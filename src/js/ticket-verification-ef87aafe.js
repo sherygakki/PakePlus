@@ -1,0 +1,30 @@
+import{bG as j,bK as A,r as m,B as H,a5 as M,C as O,aB as V,t as r,F as o,I as a,G as k,aQ as z,H as K,Q as I,Y as n,W as _,L,bI as F,bJ as J,X as P}from"./vendor-405a226c.js";import{g as Q}from"./exhibitionId-ticket-2a0701ba.js";import{a as S}from"./applloClient-722eb5fa.js";import{a as Y}from"./verification-aca4dfc9.js";import{_ as X}from"./ticket-dca8eb03.js";import{a as T}from"./vant-309f5806.js";import"./element-plus-073a5f1e.js";const W=j`
+  mutation scanV2($input: VerificationScanDtoInput!) {
+    verificationTerminal {
+      scanV2(input: $input) {
+        success
+        message
+        scannedCode
+        recordId
+        visitorId
+        visitorNo
+        visitorName
+        phoneNumber
+        isPayment
+        isRepeated
+        isCompletedReg
+        printCount
+        verificationCount
+        dailyVerificationCount
+        verificationTime
+        visitorSurname
+        usedDays
+        visitor {
+          type
+          companyName
+          country
+        }
+      }
+    }
+  }
+`;const Z=p=>(F("data-v-46c2b07a"),p=p(),J(),p),ee={class:"pda-container"},te={class:"pda-home"},se=["src"],ie={class:"pda-box"},ne={class:"pda-inputbox"},re=P(" 確認 "),oe={key:0,class:"pda-result"},ae={class:"pda-result__title pda-result__title--success"},ue={key:0,class:"pda-result__row"},ce={key:1,class:"pda-result__row"},le={key:2,class:"pda-result__row"},_e={key:3,class:"pda-result__row"},ve={key:4,class:"pda-result__row"},fe={class:"pda-result__row"},de={class:"pda-result__row"},me={class:"pda-result__row"},pe={key:5,class:"pda-result__row"},he={key:6,class:"pda-result__row"},be={class:"pda-result__title pda-result__title--fail"},Ce={class:"pda-result__row"},ge=Z(()=>a("div",{class:"pda-footer"},"©香港美纵展覽有限公司 版權所有",-1)),we={setup(p){const x="https://ts1.tc.mm.bing.net/th/id/R-C.4b81f6911a0f55a392a0d09441f71149?rik=fj%2bUEH1xznks4g&riu=http%3a%2f%2fwww.3c1x.com%2fwp-content%2fuploads%2f2021%2f03%2fb_1_201803020047449872.jpg&ehk=ObzCem%2b9CaJdsmo9MPx5jBSQ2zGBjHNDqs0fweHko2Y%3d&risl=&pid=ImgRaw&r=0",R=A(),B=600,v=m(""),w=m(null),s=m(null),C=m(!1),N=m("");let l=null;const h=async()=>{var t,i;await L(),(i=(t=w.value)==null?void 0:t.focus)==null||i.call(t)},y={核销成功:"核销成功",核销失敗:"核销失敗"},D=async()=>{var e,u;const t=Q("VEA_EXHIBITION_ID");if(!t)return;const{data:i}=await S.query({query:Y,variables:{exhibitionId:t}});N.value=((u=(e=i==null?void 0:i.verificationSetting)==null?void 0:e.async)==null?void 0:u.bannerUrl)||""},q=()=>`${R.query.channelId||""}`.trim(),U=t=>{if(!t)return null;if(typeof t=="string")try{return JSON.parse(t)}catch{return{message:t}}return t},$=t=>{if(!t||t.success===!1||t.isSuccess===!1||t.passed===!1)return!1;if(typeof t.status=="string"){const i=t.status.toLowerCase();if(["fail","failed","error","invalid"].includes(i))return!1;if(["success","passed","ok"].includes(i))return!0}return t.success===!0||t.isSuccess===!0||t.passed===!0?!0:!t.errorMessage&&!t.error&&!t.errors},E=(t,i)=>{const e=U(t),u=$(e);return{status:u?"success":"fail",title:u?(e==null?void 0:e.message)||`驗證成功${(e==null?void 0:e.printCount)>=0?`，已打印${e.printCount}次`:""}`:(e==null?void 0:e.message)||(e==null?void 0:e.errorMessage)||"驗證失敗！條碼號不存在",code:(e==null?void 0:e.scannedCode)||i,name:(e==null?void 0:e.visitorName)||"",visitorSurname:(e==null?void 0:e.visitorSurname)||"",visitorNo:(e==null?void 0:e.visitorNo)||"",phoneNumber:(e==null?void 0:e.phoneNumber)||"",isRepeated:!!(e!=null&&e.isRepeated),printCount:(e==null?void 0:e.printCount)??0,verificationCount:(e==null?void 0:e.verificationCount)??0,dailyVerificationCount:(e==null?void 0:e.dailyVerificationCount)??0,verificationTime:(e==null?void 0:e.verificationTime)||"",usedDays:(e==null?void 0:e.usedDays)??0,visitor:(e==null?void 0:e.visitor)||{}}},g=async()=>{var e,u,f,d;const t=`${v.value||""}`.trim(),i=q();if(!C.value){if(!t){T("请输入核销密钥"),h();return}if(!i){T("缺少通道參數"),h();return}C.value=!0;try{const{data:c}=await S.mutate({mutation:W,variables:{input:{channelId:i,scannedCode:t}}});s.value=E((e=c==null?void 0:c.verificationTerminal)==null?void 0:e.scanV2,t)}catch({networkError:c,message:b}){s.value={status:"fail",title:((d=(f=(u=c==null?void 0:c.result)==null?void 0:u.errors)==null?void 0:f[0])==null?void 0:d.message)||b||"驗證失敗",code:t,name:"",companyName:"",region:"",visitorCategory:""}}finally{v.value="",await h(),C.value=!1}}};return H(()=>v.value,t=>{l&&(clearTimeout(l),l=null),`${t||""}`.trim()&&(l=setTimeout(()=>{l=null,g()},B))}),M(()=>{l&&(clearTimeout(l),l=null)}),O(async()=>{try{await D()}catch{}await h()}),(t,i)=>{var f,d,c,b;const e=V("van-field"),u=V("van-button");return r(),o("div",ee,[a("div",te,[a("img",{class:"pda-banner",src:N.value||x},null,8,se),a("div",ie,[a("div",ne,[k(e,{modelValue:v.value,"onUpdate:modelValue":i[0]||(i[0]=G=>v.value=G),ref_key:"inputRef",ref:w,class:"pda-inputbox__field",type:"text",autofocus:"",clearable:"",placeholder:"請掃碼",onKeyup:z(g,["enter"])},null,8,["modelValue","onKeyup"]),k(u,{class:"pda-inputbox__btn",type:"primary",onClick:g},{default:K(()=>[re]),_:1})]),s.value?(r(),o("div",oe,[s.value.status==="success"?(r(),o(I,{key:0},[a("div",ae,n(y[s.value.status]||""),1),s.value.name?(r(),o("div",ue,"姓名："+n(s.value.visitorSurname)+n(s.value.name),1)):_("",!0),s.value.name?(r(),o("div",ce,"地區："+n(((d=(f=s.value)==null?void 0:f.visitor)==null?void 0:d.country)||""),1)):_("",!0),s.value.name?(r(),o("div",le,"訪客類別："+n(((b=(c=s.value)==null?void 0:c.visitor)==null?void 0:b.type)||""),1)):_("",!0),s.value.visitorNo?(r(),o("div",_e,"登記號："+n(s.value.visitorNo),1)):_("",!0),s.value.phoneNumber?(r(),o("div",ve,"手機號："+n(s.value.phoneNumber),1)):_("",!0),a("div",fe,"驗證次數："+n(s.value.verificationCount),1),a("div",de,"當日驗證次數："+n(s.value.dailyVerificationCount),1),a("div",me,"打印次數："+n(s.value.printCount),1),s.value.verificationTime?(r(),o("div",pe,"驗證時間："+n(s.value.verificationTime),1)):_("",!0),s.value.isRepeated?(r(),o("div",he,"狀態：重複核驗，已使用天數："+n(s.value.usedDays),1)):_("",!0)],64)):(r(),o(I,{key:1},[a("div",be,n(s.value.title),1),a("div",Ce,"條碼號："+n(s.value.code),1)],64))])):_("",!0)])]),ge])}}},Re=X(we,[["__scopeId","data-v-46c2b07a"]]);export{Re as default};
