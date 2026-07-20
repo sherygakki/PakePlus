@@ -1,0 +1,1 @@
+import{_ as e}from"./ticket-dca8eb03.js";import{aB as r,t,v as c}from"./vendor-405a226c.js";import"./vant-309f5806.js";import"./element-plus-073a5f1e.js";const n={};function s(_,a){const o=r("router-view");return t(),c(o)}const u=e(n,[["render",s]]);export{u as default};
